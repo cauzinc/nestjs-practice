@@ -71,3 +71,10 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## 关于数据库的操作和命令
+C:\Program Files\MongoDB\Server\5.0\bin
+
+mongod --dbpath g:\mongoData\db
+
+
