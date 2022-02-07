@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { MongooseModule } from '@nestjs/mongoose'
-import { Project, ProjectSchema } from './schemas/project.schema'
+import { ProjectModule } from './modules/project/project.module'
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/config_center_database'),
-    MongooseModule.forFeature([{ name: Project.name, schema: ProjectSchema }])
+    ProjectModule
   ],
   controllers: [AppController],
   providers: [AppService],
