@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import * as mongoose from 'mongoose'
-import { I18n } from './i18n.schema'
+import { Site } from './site.schema'
 
 export type ProjectDocument = Project & mongoose.Document
 
@@ -15,8 +15,11 @@ export class Project {
   @Prop()
   adminId: number;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'International' })
-  i18nId: I18n;
+  @Prop({ type: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Internation'
+  }] })
+  siteIds: Site;
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project)
