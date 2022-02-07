@@ -1,9 +1,9 @@
 import { Controller, Get, Post } from '@nestjs/common';
-import { ProjectService } from './project.service';
+import { I18nService } from './i18n.service';
 
 @Controller('/project')
-export class ProjectController {
-  constructor(private readonly projectService: ProjectService) {}
+export class I18nController {
+  constructor(private readonly projectService: I18nService) {}
 
   @Post('/create')
   createProject () {
