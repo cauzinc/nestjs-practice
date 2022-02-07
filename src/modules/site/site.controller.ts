@@ -1,17 +1,19 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { ProjectService } from './site.service';
+import { Controller, Get, Post, Req } from '@nestjs/common';
+import { SiteService } from './site.service';
 
-@Controller('/project')
-export class ProjectController {
-  constructor(private readonly projectService: ProjectService) {}
+@Controller('/site')
+export class SiteController {
+  constructor(private readonly siteService: SiteService) {}
 
   @Post('/create')
-  createProject () {
-    return this.projectService.create()
+  createSite (@Req() req) {
+    const { projectId, siteName } = req.body
+    return this.siteService.create({ projectId, siteName })
   }
 
   @Get('/list')
-  findProject () {
-    return this.projectService.find()
+  findSite (@Req() req) {
+    const { projectId } = req.body
+    return this.siteService.find({ projectId })
   }
 }
