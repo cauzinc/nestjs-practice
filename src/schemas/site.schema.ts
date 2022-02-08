@@ -10,11 +10,13 @@ export class Site {
   @Prop()
   siteName: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Internation' })
-  i18nId: I18n;
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Internation' })
+  // i18nId: I18n;
 
-  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'project' })
-  // projectId: Project;
+  // @Prop({
+  //   type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Internation' }]
+  // })
+  // textConfig: I18n;
 }
 
 export const siteSchema = SchemaFactory.createForClass(Site)

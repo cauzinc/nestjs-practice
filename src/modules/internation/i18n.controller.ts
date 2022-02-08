@@ -1,17 +1,31 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Req } from '@nestjs/common';
 import { I18nService } from './i18n.service';
 
-@Controller('/project')
+@Controller('/i18n')
 export class I18nController {
-  constructor(private readonly projectService: I18nService) {}
+  constructor(private readonly i18nService: I18nService) {}
 
-  @Post('/create')
-  createProject () {
-    return this.projectService.create()
+  @Post('/add')
+  createI18n (@Req() req) {
+    const { siteId, value, key } = req.body
+    return this.i18nService.create({ siteId, value, key })
   }
 
-  @Get('/list')
-  findProject () {
-    return this.projectService.find()
+  @Post('/edit')
+  edit (@Req() req) {
+    const { i18nId, value } = req.body
+    return this.i18nService.edit({ i18nId, value })
+  }
+
+  @Post('/delete')
+  delete (@Req() req) {
+    const { i18nId } = req.body
+    return this.i18nService.delete({ i18nId })
+  }
+
+  @Get('/getConfig')
+  findI18nConfig (@Req() req) {
+    const { siteId } = req.query
+    return this.i18nService.find({ siteId })
   }
 }

@@ -4,12 +4,14 @@ import { AppService } from './app.service'
 import { MongooseModule } from '@nestjs/mongoose'
 import { ProjectModule } from './modules/project/project.module'
 import { SiteModule } from './modules/site/site.module'
+import { I18nModule } from './modules/Internation/i18n.module'
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/config_center_database'),
     ProjectModule,
-    SiteModule
+    SiteModule,
+    I18nModule
   ],
   controllers: [AppController],
   providers: [AppService],

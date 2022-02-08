@@ -16,16 +16,9 @@ export class SiteService {
   async create(data): Promise<Site> {
     const { projectId, siteName } = data
     
-    // 创建一个i18n配置
-    const newI8n = {
-      textConfig: []
-    }
-    const createdI18n = new this.i18nModel(newI8n)
-    await createdI18n.save()
     // 创建以一个站点
     const newSite = {
-      siteName,
-      i18nId: createdI18n._id
+      siteName
     }
     const createdSite = new this.siteModel(newSite)
 
