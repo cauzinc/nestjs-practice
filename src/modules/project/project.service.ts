@@ -20,18 +20,10 @@ export class ProjectService {
     }
     const createdI18n = new this.i18nModel(newI8n)
     await createdI18n.save()
-    // 创建以一个站点
-    const newSite = {
-      siteName: 'en',
-      i18nId: createdI18n._id
-    }
-    const createdSite = new this.siteModel(newSite)
-    await createdSite.save()
     // 创建一个项目
     const newProject = {
       name: 'eLearning',
-      admin: 'admin',
-      siteIds: [createdSite._id]
+      admin: 'admin'
     }
     const createdProject = new this.projectModel(newProject)
     return createdProject.save()

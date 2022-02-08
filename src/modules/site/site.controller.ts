@@ -13,7 +13,7 @@ export class SiteController {
 
   @Get('/list')
   findSite (@Req() req) {
-    const { projectId } = req.body
+    const { projectId } = req.query
     return this.siteService.find({ projectId })
   }
 }
