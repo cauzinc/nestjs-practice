@@ -7,10 +7,13 @@ import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_CONSTANTS } from './constants';
+import { MongooseModule } from '@nestjs/mongoose'
+import { User, userSchema } from 'src/schemas/user.schema'
 
 @Module({
   imports: [
     UserModule,
+    MongooseModule.forFeature([{ name: User.name, schema: userSchema }]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: JWT_CONSTANTS.secret,
