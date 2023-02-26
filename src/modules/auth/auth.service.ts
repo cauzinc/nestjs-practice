@@ -24,13 +24,12 @@ export class AuthService {
       } else {
         throw new Error('Password not correct')
       }
-
     }
     throw new Error('User not found.')
   }
 
    // Step 3: JWT, 生成签名
-  async certificate(user: User & { _id: string }) {
+  async certificate(user: User) {
     console.log('Step 3: JWT, 生成签名')
     const payload = {
       username: user.userName,

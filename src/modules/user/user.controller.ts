@@ -1,10 +1,28 @@
 import { Controller, Post, Req } from '@nestjs/common';
 import { UserService } from './user.service';
+import { AuthService } from '../auth/auth.service';
 import { Response } from 'src/dto/response.dto'
 
 @Controller('/user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService
+  ) {}
+
+  // Step 1: JWT 用户请求登录
+  @Post('/login')
+  async login(@Req() req) {
+    const { userName, password } = req.body
+    try {
+      const user = await this.authService.validateUser({ userName, password })
+      return this.authService.certificate(user)
+    } catch(err) {
+      return Response.Error({
+        msg: err.message
+      })
+    }
+  }
 
   @Post('/create')
   async createProject (@Req() req) {
