@@ -13,6 +13,9 @@ export class User {
   password: string;
 
   @Prop()
+  passSalt: string;
+
+  @Prop()
   createBy: string;
 
   @Prop()
