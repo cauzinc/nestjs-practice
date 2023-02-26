@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 // import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
-import { UserModule } from '../user/user.module';
+// import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_CONSTANTS } from './constants';
@@ -12,7 +12,7 @@ import { User, userSchema } from 'src/schemas/user.schema'
 
 @Module({
   imports: [
-    UserModule,
+    // forwardRef(() => UserModule),
     MongooseModule.forFeature([{ name: User.name, schema: userSchema }]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({

@@ -11,8 +11,7 @@ import { AuthModule } from '../auth/auth.module'
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: userSchema }]),
-    AuthModule
-    // forwardRef(AuthModule)
+    forwardRef(() => AuthModule)
   ],
   controllers: [UserController],
   providers: [UserService],

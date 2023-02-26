@@ -13,7 +13,6 @@ export class UserService {
 
   async create({ userName, password }): Promise<User> {
     const existData = await this.userModel.find({ userName })
-    // console.log('data', existData)
     if (existData.length) {
       throw new Error('Username already exists.')
     }
@@ -29,6 +28,6 @@ export class UserService {
   }
 
   async findOne({ userName }): Promise<User> {
-    return await this.findOne({ userName })
+    return await this.userModel.findOne({ userName })
   }
 }

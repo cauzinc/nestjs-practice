@@ -16,9 +16,14 @@ export class UserController {
     const { userName, password } = req.body
     try {
       const user = await this.authService.validateUser({ userName, password })
-      return this.authService.certificate(user)
+      const data = await this.authService.certificate(user)
+      return new Response.Success({
+        data: {
+          token: data.token
+        }
+      })
     } catch(err) {
-      return Response.Error({
+      return new Response.Error({
         msg: err.message
       })
     }
