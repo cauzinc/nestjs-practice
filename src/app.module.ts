@@ -6,6 +6,7 @@ import { ProjectModule } from './modules/project/project.module'
 import { SiteModule } from './modules/site/site.module'
 import { I18nModule } from './modules/Internation/i18n.module'
 import { UserModule } from './modules/user/user.module'
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { UserModule } from './modules/user/user.module'
     ProjectModule,
     SiteModule,
     I18nModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
