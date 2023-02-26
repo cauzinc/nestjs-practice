@@ -18,20 +18,20 @@ export class SiteService {
     
     // 创建以一个站点
     const newSite = {
-      siteName
+      siteName,
+      projectId
     }
     const createdSite = new this.siteModel(newSite)
 
-    await this.projectModel.findOneAndUpdate(
-      { _id: projectId },
-      { $addToSet: { siteIds: createdSite._id } }
-    )
+    // await this.projectModel.findOneAndUpdate(
+    //   { _id: projectId },
+    //   { $addToSet: { siteIds: createdSite._id } }
+    // )
     return createdSite.save()
   }
 
   async find({ projectId }): Promise<Site[]> {
-    const project = await this.projectModel.findById(projectId)
-    const docs = this.siteModel.find({ $in: project.siteIds })
+    const docs = this.siteModel.find({ projectId: projectId })
     return docs
   }
 }
