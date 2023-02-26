@@ -10,10 +10,14 @@ export class UserService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
-  async create(): Promise<User> {
+  async create({ userName, password }): Promise<User> {
+    const existData = this.userModel.find({ userName })
+    if (existData) {
+      throw new Error('Username already exists.')
+    }
     const newUser = new User({
-      userName: 'admin',
-      password: '123'
+      userName,
+      password
     })
     const userModel = new this.userModel(newUser)
     return await userModel.save()
