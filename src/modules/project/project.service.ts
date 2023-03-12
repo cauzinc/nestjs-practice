@@ -37,7 +37,7 @@ export class ProjectService {
     return createdProject.save()
   }
 
-  async find(): Promise<Project[]> {
+async find({ userId }): Promise<Project[]> {
     const docs = this.projectModel.find()
     return docs
   }

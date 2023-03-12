@@ -18,8 +18,8 @@ export class RoleController {
     })
   }
 
-  @Get('/list')
-  findProject () {
-    return this.roleService.find()
-  }
+  // @Get('/list')
+  // findProject () {
+  //   return this.roleService.findByIds()
+  // }
 }

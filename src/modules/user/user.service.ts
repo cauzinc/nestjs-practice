@@ -3,12 +3,16 @@ import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
 import { User, UserInfoDTO } from 'src/dto/user.dto'
 import { UserDocument } from 'src/schemas/user.schema';
+import { Role, RoleDocument } from 'src/schemas/role.schema';
+import { Auth, AuthDocument } from 'src/schemas/auth.schema';
 import { makeSalt, encryptPassword } from 'src/utils/crypt'
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(Auth.name) private authModel: Model<AuthDocument>,
+    // @InjectModel(Role.name) private roleModel: Model<RoleDocument>,
   ) {}
 
   async create({ userName, password }): Promise<User> {
@@ -37,7 +41,6 @@ export class UserService {
   }
 
   async updateAuth({ roles, userId }): Promise<UserInfoDTO> {
-    console.log('on update', userId, roles)
     const user = await this.userModel.findByIdAndUpdate(
       userId,
       { roles }

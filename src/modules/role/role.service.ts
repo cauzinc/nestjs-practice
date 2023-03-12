@@ -20,8 +20,10 @@ export class RoleService {
     return newRole.save()
   }
 
-  async find() {
-    return null
+  async findByIds({ roleIds }) {
+    return await this.roleModel.find({
+      _id: { $in: roleIds }
+    })
   }
   
 }

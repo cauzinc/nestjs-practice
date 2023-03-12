@@ -24,10 +24,7 @@ export class Role {
   @Prop()
   updateTime: Date
 
-  @Prop({ type: [{ 
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Auth'
-  }] })
+  @Prop()
   auths: mongoose.Schema.Types.ObjectId[]
 }
 

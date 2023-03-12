@@ -1,6 +1,7 @@
 import { Controller, Post, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthService } from '../auth/auth.service';
+import { RoleService } from '../role/role.service';
 import { Response } from 'src/dto/response.dto'
 import { AuthGuard } from '@nestjs/passport'
 import { UseGuards } from '@nestjs/common/decorators';
@@ -9,7 +10,8 @@ import { UseGuards } from '@nestjs/common/decorators';
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly roleService: RoleService,
   ) {}
 
   // Step 1: JWT 用户请求登录
@@ -55,8 +57,18 @@ export class UserController {
     const userId = req.user ? req.user.userId : ''
     // 返回签发token时包装的数据
     const userInfo = await this.userService.getUserInfo({ userId })
+    const userRoles = await this.roleService.findByIds({ roleIds: userInfo.roles })
+    let authIds = []
+    userRoles.forEach(role => {
+      authIds = authIds.concat(role.auths)
+    })
+    const userAuths = await this.authService.findByIds({ authIds })
     return new Response.Success({
-      data: userInfo
+      data: {
+        ...userInfo,
+        roles: userRoles,
+        auths: userAuths
+      }
     })
   }
 

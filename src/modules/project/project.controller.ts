@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Req } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { AuthGuard } from '@nestjs/passport'
 import { UseGuards } from '@nestjs/common/decorators';
@@ -13,7 +13,8 @@ export class ProjectController {
   }
 
   @Get('/list')
-  findProject () {
-    return this.projectService.find()
+  findProject (@Req() req) {
+    const { userId } = req.user
+    return this.projectService.find({ userId })
   }
 }

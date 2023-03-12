@@ -18,9 +18,4 @@ export class AuthController {
       data: auth
     })
   }
-
-  @Get('/list')
-  find () {
-    return this.authService.find()
-  }
 }

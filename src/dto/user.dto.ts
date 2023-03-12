@@ -1,4 +1,5 @@
 import { User as _User } from 'src/schemas/user.schema'
+import * as mongoose from 'mongoose'
 const DEFAULT_MANAGE = 'system'
 
 interface UserParams {
@@ -28,12 +29,14 @@ export class UserInfoDTO {
   readonly createTime: Date
   readonly updateBy: string
   readonly updateTime: Date
+  readonly roles: mongoose.Types.ObjectId[]
   constructor (user: User) {
-    const { userName, createBy, createTime, updateBy, updateTime } = user
+    const { userName, createBy, createTime, updateBy, updateTime, roles } = user
     this.userName = userName
     this.createTime = createTime
     this.createBy = createBy
     this.updateBy = updateBy
     this.updateTime = updateTime
+    this.roles = roles
   }
 } 

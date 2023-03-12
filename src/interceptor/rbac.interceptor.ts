@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 
 @Injectable()
 export class RBACInterceptor implements NestInterceptor {
+  
   intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
     console.log('ON_RBACInterceptor')
     return next.handle()

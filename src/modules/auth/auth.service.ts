@@ -13,19 +13,22 @@ export class AuthService {
   constructor (
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    @InjectModel(Auth.name) private roleModel: Model<AuthDocument>,
+    @InjectModel(Auth.name) private authModel: Model<AuthDocument>,
   ) {}
 
   async create({ type, permission }) {
     const createRoleDTO = new CreateAuthDTO({
       type, permission
     })
-    const newRole = new this.roleModel(createRoleDTO)
+    const newRole = new this.authModel(createRoleDTO)
     return newRole.save()
   }
 
-  async find() {
-    return null
+  async findByIds({ authIds }) {
+    console.log('find', authIds)
+    return await this.authModel.find({
+      _id: { $in: authIds }
+    })
   }
 
   // Step 2:  JWT, 校验用户信息
