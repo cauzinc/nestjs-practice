@@ -18,6 +18,7 @@ export class User extends _User {
     this.createTime = new Date()
     this.updateBy = DEFAULT_MANAGE
     this.updateTime = new Date()
+    this.roles = []
   }
 }
 

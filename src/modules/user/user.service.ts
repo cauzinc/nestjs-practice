@@ -35,4 +35,13 @@ export class UserService {
     const user = await this.userModel.findOne({ _id: userId })
     return new UserInfoDTO(user)
   }
+
+  async updateAuth({ roles, userId }): Promise<UserInfoDTO> {
+    console.log('on update', userId, roles)
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { roles }
+    )
+    return user
+  }
 }

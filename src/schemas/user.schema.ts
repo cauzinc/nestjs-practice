@@ -29,6 +29,9 @@ export class User {
 
   @Prop()
   updateTime: Date;
+
+  @Prop()
+  roles: mongoose.Schema.Types.ObjectId[]
 }
 
 export const userSchema = SchemaFactory.createForClass(User)

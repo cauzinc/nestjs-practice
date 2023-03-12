@@ -59,4 +59,15 @@ export class UserController {
       data: userInfo
     })
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/roles/update')
+  async update (@Req() req) {
+    const userId = req.user ? req.user.userId : ''
+    const { roles } = req.body
+    const userInfo = await this.userService.updateAuth({ roles, userId })
+    return new Response.Success({
+      data: userInfo
+    })
+  }
 }
