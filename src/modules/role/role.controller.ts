@@ -12,9 +12,9 @@ export class RoleController {
   ) {}
   @Post('/create')
   createProject (@Req() req) {
-    const { roleName, auths } = req.body
+    const { roleName, auths, roleLevel } = req.body
     return this.roleService.create({
-      roleName, auths
+      roleName, auths, roleLevel
     })
   }
 

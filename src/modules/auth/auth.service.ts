@@ -1,18 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
+import { Model } from 'mongoose'
 import { User } from 'src/dto/user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { encryptPassword } from 'src/utils/crypt';
+import { CreateAuthDTO } from 'src/dto/auth.dto'
+import { InjectModel } from '@nestjs/mongoose'
+import { Auth, AuthDocument } from 'src/schemas/auth.schema';
 
 @Injectable()
 export class AuthService {
   constructor (
     private readonly userService: UserService,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
+    @InjectModel(Auth.name) private roleModel: Model<AuthDocument>,
   ) {}
 
-  async create() {
-    return null
+  async create({ type, permission }) {
+    const createRoleDTO = new CreateAuthDTO({
+      type, permission
+    })
+    const newRole = new this.roleModel(createRoleDTO)
+    return newRole.save()
   }
 
   async find() {

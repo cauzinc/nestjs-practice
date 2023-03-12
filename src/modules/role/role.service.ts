@@ -10,14 +10,14 @@ export class RoleService {
     @InjectModel(Role.name) private roleModel: Model<RoleDocument>,
   ) {}
   
-  async create({ roleName, auths }) {
+  async create({ roleName, auths, roleLevel }) {
     const createRoleDTO = new CreateRoleDTO({
       roleName,
-      auths
+      auths,
+      roleLevel
     })
     const newRole = new this.roleModel(createRoleDTO)
     return newRole.save()
-    return null
   }
 
   async find() {

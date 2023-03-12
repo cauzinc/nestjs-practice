@@ -10,6 +10,9 @@ export class Role {
   roleName: string
 
   @Prop()
+  roleLevel: number
+
+  @Prop()
   createBy: string
 
   @Prop()

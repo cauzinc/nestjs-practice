@@ -7,7 +7,7 @@ export type AuthDocument = Auth & mongoose.Document
 @Schema()
 export class Auth {
   @Prop()
-  _id: mongoose.Schema.Types.ObjectId
+  _id: mongoose.Types.ObjectId
   
   @Prop()
   type: string;
