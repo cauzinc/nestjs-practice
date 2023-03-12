@@ -8,6 +8,7 @@ import { SiteModule } from './modules/site/site.module'
 import { I18nModule } from './modules/Internation/i18n.module'
 import { UserModule } from './modules/user/user.module'
 import { AuthModule } from './modules/auth/auth.module';
+import { RoleModule } from './modules/role/role.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { AuthModule } from './modules/auth/auth.module';
     SiteModule,
     I18nModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    RoleModule
   ],
   controllers: [AppController],
   providers: [AppService],

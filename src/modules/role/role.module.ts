@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { RoleService } from './role.service';
-import { UserService } from '../user/user.service';
+// import { UserService } from '../user/user.service';
+import { RoleController } from './role.controller';
 import { MongooseModule } from '@nestjs/mongoose'
-import { User, userSchema } from 'src/schemas/user.schema'
+import { Role, RoleSchema } from 'src/schemas/role.schema'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: userSchema }]),
+    MongooseModule.forFeature([{ name: Role.name, schema: RoleSchema }]),
   ],
-  providers: [RoleService, UserService],
+  providers: [RoleService],
+  controllers: [RoleController],
   exports: [RoleService],
 })
-export class AuthModule {}
+export class RoleModule {}
