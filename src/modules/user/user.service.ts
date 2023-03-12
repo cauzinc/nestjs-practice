@@ -6,12 +6,12 @@ import { UserDocument } from 'src/schemas/user.schema';
 import { Role, RoleDocument } from 'src/schemas/role.schema';
 import { Auth, AuthDocument } from 'src/schemas/auth.schema';
 import { makeSalt, encryptPassword } from 'src/utils/crypt'
-
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Auth.name) private authModel: Model<AuthDocument>,
+    // private readonly roleService: RoleService,
     // @InjectModel(Role.name) private roleModel: Model<RoleDocument>,
   ) {}
 

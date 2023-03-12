@@ -25,7 +25,6 @@ export class AuthService {
   }
 
   async findByIds({ authIds }) {
-    console.log('find', authIds)
     return await this.authModel.find({
       _id: { $in: authIds }
     })

@@ -13,7 +13,7 @@ export class ProjectService {
     @InjectModel(Site.name) private siteModel: Model<SiteDocument>,
   ) {}
 
-  async create(): Promise<Project> {
+  async create({ name, userName }): Promise<Project> {
     // 创建一个i18n配置
     const newI8n = {
       textConfig: []
@@ -29,15 +29,15 @@ export class ProjectService {
     await createdSite.save()
     // 创建一个项目
     const newProject = {
-      name: 'eLearning',
-      admin: 'admin',
+      name,
+      admin: userName,
       siteIds: [createdSite._id]
     }
     const createdProject = new this.projectModel(newProject)
-    return createdProject.save()
+    return await createdProject.save()
   }
 
-async find({ userId }): Promise<Project[]> {
+async find(): Promise<Project[]> {
     const docs = this.projectModel.find()
     return docs
   }

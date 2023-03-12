@@ -8,6 +8,7 @@ export const AUTH_TYPE = {
 
 export const AUTH_VALUE = {
   [AUTH_TYPE.PROJECT]: {
-    ELEARNING: 'eLearning'
+    ELEARNING: 'eLearning',
+    SSO: 'SSO',
   }
 }
