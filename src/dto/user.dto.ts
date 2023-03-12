@@ -22,11 +22,11 @@ export class User extends _User {
 }
 
 export class UserInfoDTO {
-  userName: string
-  createBy: string
-  createTime: Date
-  updateBy: string
-  updateTime: Date
+  readonly userName: string
+  readonly createBy: string
+  readonly createTime: Date
+  readonly updateBy: string
+  readonly updateTime: Date
   constructor (user: User) {
     const { userName, createBy, createTime, updateBy, updateTime } = user
     this.userName = userName

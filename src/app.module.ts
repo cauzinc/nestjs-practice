@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common'
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { MongooseModule } from '@nestjs/mongoose'
+import { TstMiddleware } from './middleware/tst.middleware'
 import { ProjectModule } from './modules/project/project.module'
 import { SiteModule } from './modules/site/site.module'
 import { I18nModule } from './modules/Internation/i18n.module'
@@ -20,4 +21,10 @@ import { AuthModule } from './modules/auth/auth.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(TstMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL })
+  }
+}

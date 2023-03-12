@@ -1,4 +1,4 @@
-import { Injectable, Inject, forwardRef } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { User } from 'src/dto/user.dto';
 import { JwtService } from '@nestjs/jwt';
