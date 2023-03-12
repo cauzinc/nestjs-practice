@@ -5,7 +5,7 @@ const DEFAULT_MANAGE = 'system'
 export class CreateRoleDTO extends Role {
   constructor (params: {
     roleName: string,
-    auths: mongoose.Schema.Types.ObjectId[],
+    auths: mongoose.Types.ObjectId[],
     roleLevel: number
   }) {
     super()
