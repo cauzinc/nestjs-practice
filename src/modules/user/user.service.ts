@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
-import { User } from 'src/dto/user.dto'
+import { User, UserInfoDTO } from 'src/dto/user.dto'
 import { UserDocument } from 'src/schemas/user.schema';
 import { makeSalt, encryptPassword } from 'src/utils/crypt'
 
@@ -29,5 +29,10 @@ export class UserService {
 
   async findOne({ userName }): Promise<User> {
     return await this.userModel.findOne({ userName })
+  }
+
+  async getUserInfo({ userId }): Promise<UserInfoDTO> {
+    const user = await this.userModel.findOne({ _id: userId })
+    return new UserInfoDTO(user)
   }
 }

@@ -20,3 +20,19 @@ export class User extends _User {
     this.updateTime = new Date()
   }
 }
+
+export class UserInfoDTO {
+  userName: string
+  createBy: string
+  createTime: Date
+  updateBy: string
+  updateTime: Date
+  constructor (user: User) {
+    const { userName, createBy, createTime, updateBy, updateTime } = user
+    this.userName = userName
+    this.createTime = createTime
+    this.createBy = createBy
+    this.updateBy = updateBy
+    this.updateTime = updateTime
+  }
+} 

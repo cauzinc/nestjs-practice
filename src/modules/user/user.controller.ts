@@ -2,6 +2,8 @@ import { Controller, Post, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthService } from '../auth/auth.service';
 import { Response } from 'src/dto/response.dto'
+import { AuthGuard } from '@nestjs/passport'
+import { UseGuards } from '@nestjs/common/decorators';
 
 @Controller('/user')
 export class UserController {
@@ -45,5 +47,16 @@ export class UserController {
         msg: err.message
       })
     }
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/getUserInfo')
+  async getUserInfo (@Req() req) {
+    const userId = req.user ? req.user.userId : ''
+    // 返回签发token时包装的数据
+    const userInfo = await this.userService.getUserInfo({ userId })
+    return new Response.Success({
+      data: userInfo
+    })
   }
 }
