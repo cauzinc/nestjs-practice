@@ -11,6 +11,14 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
+  async create() {
+    return null
+  }
+
+  async find() {
+    return null
+  }
+
   // Step 2:  JWT, 校验用户信息
   async validateUser ({ userName, password }) {
     console.log('Step 2:  校验用户信息')
