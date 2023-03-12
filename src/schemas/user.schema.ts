@@ -30,7 +30,12 @@ export class User {
   @Prop()
   updateTime: Date;
 
-  @Prop()
+  @Prop({
+    type: [{ 
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Role'
+    }]
+  })
   roles: mongoose.Types.ObjectId[]
 }
 

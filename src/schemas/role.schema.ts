@@ -24,8 +24,11 @@ export class Role {
   @Prop()
   updateTime: Date
 
-  @Prop()
-  auths: mongoose.Schema.Types.ObjectId[]
+  @Prop({ type: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Auth'
+  }] })
+  auths: mongoose.Types.ObjectId[]
 }
 
 export const RoleSchema = SchemaFactory.createForClass(Role)
